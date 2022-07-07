@@ -1,14 +1,20 @@
 <?php
-fscanf(STDIN, "%d\n", $numberOne);
+$fullName ='';
+$fio = '';
+$surnameAndInitials = '';
 
-fscanf(STDIN, "%d\n", $numberTwo);
 
-if($numberTwo===0){
-    $stderr = fopen('php://stderr', 'w');
-    fwrite($stderr,"Делить на 0 нельзя");
-}elseif(is_numeric ($numberOne)&&is_numeric ($numberTwo)){
-    echo $numberOne/$numberTwo;
-}else{
-    $stderr = fopen('php://stderr', 'w');
-    fwrite($stderr,"Введите, пожалуйста, число");
-}
+$stderr = fopen('php://stderr', 'w');
+fwrite($stderr,"Введите, пожалуйста, Имя".PHP_EOL);
+fscanf(STDIN, "%s\n", $nameUser);
+$stderr = fopen('php://stderr', 'w');
+fwrite($stderr,"Введите, пожалуйста,Фимилию".PHP_EOL);
+fscanf(STDIN, "%s\n", $lastnameUser);
+$stderr = fopen('php://stderr', 'w');
+fwrite($stderr,"Введите, пожалуйста,Отчество".PHP_EOL);
+fscanf(STDIN, "%s\n", $patronymicUser);
+
+
+
+$stderr = fopen('php://stderr', 'w');
+fwrite($stderr,"$nameUser $lastnameUser $patronymicUser");
