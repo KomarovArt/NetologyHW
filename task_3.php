@@ -17,9 +17,13 @@ fscanf(STDIN, "%s\n", $patronymicUser);
 
 
 $temporaryVariable = preg_match_all($pattern, $nameUser ,$outNameUser);
-$temporaryVariable = preg_match_all($pattern, $lastnameUser ,$outLastNameUser);
-$temporaryVariable = preg_match_all($pattern, $patronymicUser ,$outPatronymicUser);
+$temporaryVariable2 = preg_match_all($pattern, $lastnameUser ,$outLastNameUser);
+$temporaryVariable3 = preg_match_all($pattern, $patronymicUser ,$outPatronymicUser);
 
+echo iconv_get_encoding($outNameUser[0][0]).PHP_EOL;
+echo $outNameUser[0][0].PHP_EOL;
+echo $outLastNameUser[0][0].PHP_EOL;
+echo $outPatronymicUser[0][0].PHP_EOL;
 //вывод фио
 $fio = strtoupper($outNameUser[0][0]).strtoupper($outLastNameUser[0][0]).strtoupper($outPatronymicUser[0][0]);
 echo $fio.PHP_EOL;
