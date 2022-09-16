@@ -16,13 +16,17 @@ $operations = [
 
 $items = [];
 
-$funOperationAdd = function () use ($items) {
+function funOperationAdd()
+{
+
     echo "Введение название товара для добавления в список: \n> ";
     $itemName = trim(fgets(STDIN));
     return $itemName;
-};
+}
 
-$funOperationDelete = function () use ($items) {
+function funOperationDelete($items)
+{
+
     // Проверить, есть ли товары в списке? Если нет, то сказать об этом и попросить ввести другую операцию
     echo 'Текущий список покупок:' . PHP_EOL;
     echo 'Список покупок: ' . PHP_EOL;
@@ -31,20 +35,23 @@ $funOperationDelete = function () use ($items) {
     echo 'Введение название товара для удаления из списка:' . PHP_EOL . '> ';
     $itemName = trim(fgets(STDIN));
 
-    if (in_array($itemName, $items, true) !== false) {
-        while (($key = array_search($itemName, $items, true)) !== false) {
+    if (in_array($itemName,  $items, true) !== false) {
+        while (($key = array_search($itemName,  $items, true)) !== false) {
             unset($items[$key]);
         }
     }
-};
+    return $items;
+}
 
-$funOperationPrint = function () use ($items) {
+function funOperationPrint($items)
+{
     echo 'Ваш список покупок: ' . PHP_EOL;
     echo implode(PHP_EOL, $items) . PHP_EOL;
     echo 'Всего ' . count($items) . ' позиций. ' . PHP_EOL;
     echo 'Нажмите enter для продолжения';
     fgets(STDIN);
-};
+    return $items;
+}
 
 do {
     system('clear');
@@ -75,15 +82,15 @@ do {
 
     switch ($operationNumber) {
         case OPERATION_ADD:
-            $items[] =  $funOperationAdd();
+            $items[] =  funOperationAdd();
             break;
 
         case OPERATION_DELETE:
-            $funOperationDelete();
+            $items = funOperationDelete($items);
             break;
 
         case OPERATION_PRINT:
-            $funOperationPrint();
+            funOperationPrint($items);
             break;
     }
 
